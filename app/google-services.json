@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "787034067747",
+    "firebase_url": "https://simplerootcheck.firebaseio.com",
+    "project_id": "simplerootcheck",
+    "storage_bucket": "simplerootcheck.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:787034067747:android:c6b8d2874b6562cb",
+        "android_client_info": {
+          "package_name": "rirozizo.simplerootcheck"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "787034067747-luqvj1ukoh93efr8dsncdghq5ra364eu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "rirozizo.simplerootcheck",
+            "certificate_hash": "8bd0dc27e7b47b49f4caf1c11f8230d88e1aa781"
+          }
+        },
+        {
+          "client_id": "787034067747-vlel0ekaide1jmgev8djd5flpjf1nkcr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6sRxxxZwKTync8jM1DSJ6n4_ngU3avyw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "787034067747-vlel0ekaide1jmgev8djd5flpjf1nkcr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
