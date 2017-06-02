@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                     new BufferedReader(new InputStreamReader(stderr));
             while ((line = br.readLine()) != null) {
                 Log.e("[Error]", line);
-                tv1.setText("THERE'S A PROBLEM WITH ROOT!");
+                tv1.setText(R.string.root_problem);
                 works = false;
             }
             br.close();
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
         } catch (Exception ex) {
             // If there's a general exception
-            tv1.setText("NOPE");
+            tv1.setText(R.string.problem);
         }
 
         if (works) {
