@@ -33,31 +33,35 @@ public class MainActivity extends AppCompatActivity {
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
+        // Google stuff... Ad related code
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-
-
+        // Initializing Views
         tv1 = (TextView) findViewById(R.id.text1);
         iv = (ImageView) findViewById(R.id.image);
 
+        // Failure color by default because why not
         tv1.setTextColor(getResources().getColor(R.color.ROOT_TEXT_COLOR_NOPE));
 
         String line = "";
         String s = "";
+        // Success value by default because I'm inconsistent
         boolean works = true;
         try {
-
+            // Executing the command su
             Process process = Runtime.getRuntime().exec("su");
+
+            // Stream initialization
             OutputStream stdin = process.getOutputStream();
             InputStream stderr = process.getErrorStream();
             InputStream stdout = process.getInputStream();
 
+            // If it worked fine
             stdin.write(("echo YOU HAVE ROOT!\n").getBytes());
             stdin.write("exit\n".getBytes());
             stdin.flush();
-
             stdin.close();
             BufferedReader br =
                     new BufferedReader(new InputStreamReader(stdout));
@@ -66,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
                 s = s + line + "\n";
             }
             br.close();
+
+            // If there's a problem with su
             br =
                     new BufferedReader(new InputStreamReader(stderr));
             while ((line = br.readLine()) != null) {
@@ -74,20 +80,22 @@ public class MainActivity extends AppCompatActivity {
                 works = false;
             }
             br.close();
-
             process.waitFor();
             process.destroy();
 
         } catch (Exception ex) {
+            // If there's a general exception
             tv1.setText("NOPE");
         }
 
         if (works) {
+            // WE HAVE ROOT!
             tv1.setTextColor(getResources().getColor(R.color.ROOT_TEXT_COLOR_WORKS));
             tv1.setText(s);
             iv.setImageResource(R.drawable.works);
         }
 
+        // More Google stuff
         Bundle bundle = new Bundle();
         bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "1");
         bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "root check");
