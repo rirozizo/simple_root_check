@@ -3,4 +3,6 @@
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="root_problem">THERE\'S A PROBLEM WITH ROOT!</string>
     <string name="problem">NOPE!</string>
+    <string name="device">Your Device is: %1$s</string>
+    <string name="version">Your Android Version is: %1$s</string>
 </resources>
