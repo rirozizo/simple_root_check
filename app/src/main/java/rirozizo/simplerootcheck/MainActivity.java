@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         tv1.setTextColor(getResources().getColor(R.color.ROOT_TEXT_COLOR_NOPE));
 
         // Success value by default because I'm inconsistent
-        boolean works = true;
+        boolean works = false;
         try {
             // Executing the command su
             Process process = Runtime.getRuntime().exec("su");
@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             while ((line = br.readLine()) != null) {
                 Log.d("[Output]", line);
                 root_check = root_check + line + "\n";
+                works = true;
             }
             br.close();
 
@@ -194,9 +195,9 @@ public class MainActivity extends AppCompatActivity {
             String device = String.format(res.getString(R.string.device), device_check);
 
             tv2.setText(version);
-            iv.setImageResource(R.drawable.works);
 
             tv3.setText(device);
+
             iv.setImageResource(R.drawable.works);
         }
     }
