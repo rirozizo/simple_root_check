@@ -16,6 +16,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 
+import com.google.android.gms.ads.MobileAds;
+
 public class MainActivity extends AppCompatActivity {
     TextView tv1;
     TextView tv2;
@@ -37,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         String root_check = "";
         String version_check = "";
         String device_check = "";
+
+        // Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713
+        MobileAds.initialize(this, "PUT YOURS SON!");
 
         // Obtain the Firebase Analytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
