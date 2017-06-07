@@ -2,13 +2,17 @@ package rirozizo.simplerootcheck;
 
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.io.BufferedReader;
@@ -17,22 +21,51 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 
 import com.google.android.gms.ads.MobileAds;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 
 public class MainActivity extends AppCompatActivity {
     TextView tv1;
     TextView tv2;
     TextView tv3;
+    TextView tv4;
     ImageView iv;
 
     private FirebaseAnalytics mFirebaseAnalytics;
 
     private static final String TAG = "MainActivity";
     private AdView mAdView;
+    private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        String message = "";
+
+        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+
+        // cacheExpirationSeconds is set to cacheExpiration here, indicating that any previously
+        // fetched and cached config would be considered expired because it would have been fetched
+        // more than cacheExpiration seconds ago. Thus the next fetch would go to the server unless
+        // throttling is in progress. The default expiration duration is 43200 (12 hours).
+        mFirebaseRemoteConfig.fetch(43200)
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "Fetch Succeeded",
+                                    Toast.LENGTH_SHORT).show();
+
+                            // Once the config is successfully fetched it must be activated before newly fetched
+                            // values are returned.
+                            mFirebaseRemoteConfig.activateFetched();
+                        } else {
+                            Toast.makeText(MainActivity.this, "Fetch Failed",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+        message = mFirebaseRemoteConfig.getString("message");
 
         // Initializing Strings
         String line = "";
@@ -55,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         tv1 = (TextView) findViewById(R.id.text1);
         tv2 = (TextView) findViewById(R.id.textView);
         tv3 = (TextView) findViewById(R.id.textView2);
+        tv4 = (TextView) findViewById(R.id.textView3);
         iv = (ImageView) findViewById(R.id.image);
 
         // Failure color by default because why not
@@ -202,6 +236,8 @@ public class MainActivity extends AppCompatActivity {
             tv2.setText(version);
 
             tv3.setText(device);
+
+            tv4.setText(message);
 
             iv.setImageResource(R.drawable.works);
         }

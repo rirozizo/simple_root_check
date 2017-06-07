@@ -29,7 +29,9 @@ dependencies {
     compile 'com.google.firebase:firebase-ads:10.2.6'
     compile 'com.google.firebase:firebase-core:10.2.6'
     compile 'com.google.android.gms:play-services-ads:10.2.6'
+    compile 'com.google.firebase:firebase-config:10.2.6'
     testCompile 'junit:junit:4.12'
 }
+
 
 apply plugin: 'com.google.gms.google-services'
