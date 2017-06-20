@@ -5,23 +5,24 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-
-import com.google.android.gms.ads.MobileAds;
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 
 public class MainActivity extends AppCompatActivity {
     TextView tv1;
@@ -29,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
     TextView tv3;
     TextView tv4;
     ImageView iv;
+
+    Button b;
+
+    String message = "";
 
     private FirebaseAnalytics mFirebaseAnalytics;
 
@@ -40,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String message = "";
 
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
 
@@ -65,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-        message = mFirebaseRemoteConfig.getString("message");
+
 
         // Initializing Strings
         String line = "";
@@ -90,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
         tv3 = (TextView) findViewById(R.id.textView2);
         tv4 = (TextView) findViewById(R.id.textView3);
         iv = (ImageView) findViewById(R.id.image);
+        b = (Button) findViewById(R.id.button2);
+        b.setEnabled(false);
 
         // Failure color by default because why not
         tv1.setTextColor(getResources().getColor(R.color.ROOT_TEXT_COLOR_NOPE));
@@ -237,9 +243,22 @@ public class MainActivity extends AppCompatActivity {
 
             tv3.setText(device);
 
-            tv4.setText(message);
 
             iv.setImageResource(R.drawable.works);
         }
+
+        final long changeTime = 3000L;
+        b.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                b.setEnabled(true);
+            }
+        }, changeTime);
+    }
+
+    public void MFTD(View v) {
+        message = mFirebaseRemoteConfig.getString("message");
+
+        tv4.setText(message);
     }
 }
