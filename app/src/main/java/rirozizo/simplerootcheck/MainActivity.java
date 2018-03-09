@@ -257,6 +257,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void MFTD(View v) {
+        Bundle params = new Bundle();
+        params.putString(FirebaseAnalytics.Param.ITEM_ID, "2");
+        params.putString(FirebaseAnalytics.Param.ITEM_NAME, "MFTD_BUTTON");
+        params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "Button");
+        mFirebaseAnalytics.logEvent("MFTD_CLICKED", params);
         message = mFirebaseRemoteConfig.getString("message");
 
         tv4.setText(message);
