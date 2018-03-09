@@ -5,4 +5,6 @@
     <string name="problem">NOPE!</string>
     <string name="device">Your Device is: %1$s</string>
     <string name="version">Your Android Version is: %1$s</string>
+    <string name="MFTD">Show MFTD</string>
+    <string name="no_root">NOPE!</string>
 </resources>
