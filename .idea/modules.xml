@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://D:\simple_root_check\SimpleRootCheck.iml" filepath="D:\simple_root_check\SimpleRootCheck.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\simple_root_check\app\app.iml" filepath="D:\simple_root_check\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/simple_root_check.iml" filepath="$PROJECT_DIR$/simple_root_check.iml" />
     </modules>
   </component>
