@@ -1,5 +1,6 @@
 package rirozizo.simplerootcheck;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -265,5 +266,10 @@ public class MainActivity extends AppCompatActivity {
         message = mFirebaseRemoteConfig.getString("message");
 
         tv4.setText(message);
+    }
+
+    public void privacy(View v) {
+        Intent intent = new Intent(this, Privacy.class);
+        startActivity(intent);
     }
 }
