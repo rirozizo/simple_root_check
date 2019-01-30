@@ -6,8 +6,8 @@ android {
         applicationId "rirozizo.simplerootcheck"
         minSdkVersion 24
         targetSdkVersion 26
-        versionCode 7
-        versionName "1.5"
+        versionCode 8
+        versionName "1.6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -19,17 +19,17 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.google.firebase:firebase-ads:10.2.6'
-    compile 'com.google.firebase:firebase-core:10.2.6'
-    compile 'com.google.android.gms:play-services-ads:10.2.6'
-    compile 'com.google.firebase:firebase-config:10.2.6'
-    testCompile 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.google.firebase:firebase-ads:10.2.6'
+    implementation 'com.google.firebase:firebase-core:10.2.6'
+    implementation 'com.google.android.gms:play-services-ads:10.2.6'
+    implementation 'com.google.firebase:firebase-config:10.2.6'
+    testImplementation 'junit:junit:4.12'
 }
 
 
