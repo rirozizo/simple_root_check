@@ -26,21 +26,15 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 
 public class MainActivity extends AppCompatActivity {
-    TextView tv1;
-    TextView tv2;
-    TextView tv3;
-    TextView tv4;
-    ImageView iv;
+    private TextView tv4;
 
-    Button b;
+    private Button b;
 
-    String message = "";
-    Boolean mftd_shown;
+    private Boolean mftd_shown;
 
     private FirebaseAnalytics mFirebaseAnalytics;
 
     private static final String TAG = "MainActivity";
-    private AdView mAdView;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
     @Override
@@ -64,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
                             // Once the config is successfully fetched it must be activated before newly fetched
                             // values are returned.
-                            mFirebaseRemoteConfig.activateFetched();
+                            mFirebaseRemoteConfig.activate();
                         } else {
                             Toast.makeText(MainActivity.this, "Fetch Failed",
                                     Toast.LENGTH_SHORT).show();
@@ -87,21 +81,21 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         // Google stuff... Ad related code
-        mAdView = (AdView) findViewById(R.id.adView);
+        AdView mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
         // Initializing Views
-        tv1 = (TextView) findViewById(R.id.text1);
-        tv2 = (TextView) findViewById(R.id.textView);
-        tv3 = (TextView) findViewById(R.id.textView2);
-        tv4 = (TextView) findViewById(R.id.textView3);
-        iv = (ImageView) findViewById(R.id.image);
-        b = (Button) findViewById(R.id.button2);
+        TextView tv1 = findViewById(R.id.text1);
+        TextView tv2 = findViewById(R.id.textView);
+        TextView tv3 = findViewById(R.id.textView2);
+        tv4 = findViewById(R.id.textView3);
+        ImageView iv = findViewById(R.id.image);
+        b = findViewById(R.id.button2);
         b.setEnabled(false);
 
         // Failure color by default because why not
-        tv1.setTextColor(getResources().getColor(R.color.ROOT_TEXT_COLOR_NOPE));
+        tv1.setTextColor(getColor(R.color.ROOT_TEXT_COLOR_NOPE));
 
         // Success value by default because I'm inconsistent
         boolean works = false;
@@ -233,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
         if (works) {
 
             // WE HAVE ROOT!
-            tv1.setTextColor(getResources().getColor(R.color.ROOT_TEXT_COLOR_WORKS));
+            tv1.setTextColor(getColor(R.color.ROOT_TEXT_COLOR_WORKS));
             tv1.setText(root_check);
             iv.setImageResource(R.drawable.works);
 
@@ -265,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
         params.putString(FirebaseAnalytics.Param.ITEM_NAME, "MFTD_BUTTON");
         params.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "Button");
         mFirebaseAnalytics.logEvent("MFTD_CLICKED", params);
-        message = mFirebaseRemoteConfig.getString("message");
+        String message = mFirebaseRemoteConfig.getString("message");
 
         if(!mftd_shown)
         {

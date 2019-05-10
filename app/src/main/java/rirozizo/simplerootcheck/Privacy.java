@@ -7,14 +7,12 @@ import android.widget.TextView;
 
 public class Privacy extends AppCompatActivity {
 
-    TextView policytv;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_privacy);
 
-        policytv = (TextView) findViewById(R.id.policyText);
+        TextView policytv = findViewById(R.id.policyText);
 
         policytv.setText(Html.fromHtml("<!DOCTYPE html>\n" +
                 "    <html>\n" +
