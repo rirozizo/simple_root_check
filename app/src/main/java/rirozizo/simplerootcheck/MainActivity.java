@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     Button b;
 
     String message = "";
+    Boolean mftd_shown;
 
     private FirebaseAnalytics mFirebaseAnalytics;
 
@@ -72,11 +73,12 @@ public class MainActivity extends AppCompatActivity {
                 });
 
 
-        // Initializing Strings
+        // Initializing Variables
         String line = "";
         String root_check = "";
         String version_check = "";
         String device_check = "";
+        mftd_shown = false;
 
         // Sample AdMob app ID: ca-app-pub-3940256099942544~3347511713
         MobileAds.initialize(this, "PUT YOURS SON!");
@@ -265,7 +267,16 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAnalytics.logEvent("MFTD_CLICKED", params);
         message = mFirebaseRemoteConfig.getString("message");
 
-        tv4.setText(message);
+        if(!mftd_shown)
+        {
+            tv4.setText(message);
+            b.setText(getString(R.string.hide_MFTD));
+            mftd_shown = true;
+        } else {
+            tv4.setText(null);
+            b.setText(getString(R.string.show_MFTD));
+            mftd_shown = false;
+        }
     }
 
     public void privacy(View v) {

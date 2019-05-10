@@ -5,7 +5,8 @@
     <string name="problem">NOPE!</string>
     <string name="device">Your Device is: %1$s</string>
     <string name="version">Your Android Version is: %1$s</string>
-    <string name="MFTD">Show MFTD</string>
+    <string name="show_MFTD">Show MFTD</string>
+    <string name="hide_MFTD">Hide MFTD</string>
     <string name="no_root">NOPE!</string>
     <string name="privacy">Privacy Policy</string>
 </resources>
